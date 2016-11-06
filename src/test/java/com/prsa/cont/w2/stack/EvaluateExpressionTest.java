@@ -19,8 +19,8 @@ public class EvaluateExpressionTest {
         value = EvaluateExpression.evaluate("(((1+9)*(5-3))-(1+2))");
         Assert.assertEquals(Integer.valueOf(value), Integer.valueOf(17), "Expected value does not match");
 
-        value = EvaluateExpression.evaluate("((((1+9)*(5-3))-2)-10)");
-        Assert.assertEquals(Integer.valueOf(value), Integer.valueOf(8), "Expected value does not match");
+        value = EvaluateExpression.evaluate("(((1+9)*(5-3))*((2-1)+(9-1)))");
+        Assert.assertEquals(Integer.valueOf(value), Integer.valueOf(180), "Expected value does not match");
     }
 
 }

@@ -11,7 +11,7 @@ public class EvaluateExpression {
     final static String MULTIPLICATION = "*";
 
     /**
-     * Assumption : the passed expression is well formed.
+     * Assumption : the passed expression is well formed and cosists of single digits only.
      * @param expression
      * @return
      */
