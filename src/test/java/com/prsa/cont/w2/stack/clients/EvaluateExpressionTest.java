@@ -1,5 +1,6 @@
-package com.prsa.cont.w2.stack;
+package com.prsa.cont.w2.stack.clients;
 
+import com.prsa.cont.w2.stack.clients.EvaluateExpression;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

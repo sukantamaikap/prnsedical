@@ -1,4 +1,6 @@
-package com.prsa.cont.w2.stack;
+package com.prsa.cont.w2.stack.clients;
+
+import com.prsa.cont.w2.stack.ArrayStack;
 
 /**
  * Dijkstra's two-stack algorithm for expression evaluation.
@@ -18,8 +20,8 @@ public class EvaluateExpression {
     public static long evaluate(final String expression) {
         final String[] exp = expression.split(" ");
 
-        final Stack<Long> numbers = new Stack<Long>();
-        final Stack<String> operations = new Stack<String>();
+        final ArrayStack<Long> numbers = new ArrayStack<Long>();
+        final ArrayStack<String> operations = new ArrayStack<String>();
 
         for (int i = 0; i < exp.length; i++) {
             final String item = exp[i];
@@ -44,7 +46,7 @@ public class EvaluateExpression {
         return numbers.pop();
     }
 
-    private static void calculateAndPushBack(Stack<Long> numbers, Stack<String> operations) {
+    private static void calculateAndPushBack(ArrayStack<Long> numbers, ArrayStack<String> operations) {
         final long item1 = numbers.pop();
         final long item2 = numbers.pop();
         final String ops = operations.pop();

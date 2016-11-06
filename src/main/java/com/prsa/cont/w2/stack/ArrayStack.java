@@ -3,18 +3,18 @@ package com.prsa.cont.w2.stack;
 import java.util.Iterator;
 
 /**
- * Stack implementation with resizing generic array.
+ * ArrayStack implementation with resizing generic array.
  */
-public class Stack<T> implements Iterable<T> {
+public class ArrayStack<T> implements Iterable<T> {
     private T[] stack;
     private int head = 0;
     private int capacity;
 
-    public Stack() {
+    public ArrayStack() {
         this(10);
     }
 
-    public Stack(final int capacity) {
+    public ArrayStack(final int capacity) {
         this.capacity = capacity;
         this.stack = (T[]) new Object[this.capacity];
     }
@@ -69,14 +69,14 @@ public class Stack<T> implements Iterable<T> {
     }
 
     private class ReverseArrayTraversalIterator implements Iterator<T> {
-        int i = Stack.this.head;
+        int i = ArrayStack.this.head;
 
         public boolean hasNext() {
             return this.i > 0;
         }
 
         public T next() {
-            return Stack.this.stack[--this.i];
+            return ArrayStack.this.stack[--this.i];
         }
 
         public void remove() {

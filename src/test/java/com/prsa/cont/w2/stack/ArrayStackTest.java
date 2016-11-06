@@ -5,14 +5,14 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 /**
- * Stack end to end tests.
+ * ArrayStack end to end tests.
  */
-public class StackTest {
+public class ArrayStackTest {
 
     @Test
     public void testIntStack() {
         final int capacity = 10;
-        final Stack<Integer> integerStack = new Stack<Integer>(capacity);
+        final ArrayStack<Integer> integerStack = new ArrayStack<Integer>(capacity);
         for (int i = 0; i < capacity; i++) {
             integerStack.push(i);
         }
@@ -26,7 +26,7 @@ public class StackTest {
     @Test
     public void testStackResizing() {
         final int testCapacity = 10000;
-        final Stack<Integer> integerStack = new Stack<Integer>();
+        final ArrayStack<Integer> integerStack = new ArrayStack<Integer>();
         for (int i = 0; i < testCapacity; i++) {
             integerStack.push(i);
         }
@@ -57,7 +57,7 @@ public class StackTest {
     @Test
     public void testStackIterator() {
         final int testCapacity = 100;
-        final Stack<Integer> integerStack = new Stack<Integer>();
+        final ArrayStack<Integer> integerStack = new ArrayStack<Integer>();
         for (int i = 0; i < testCapacity; i++) {
             integerStack.push(i);
         }
