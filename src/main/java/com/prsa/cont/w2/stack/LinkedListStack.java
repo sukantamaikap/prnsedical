@@ -43,4 +43,8 @@ public class LinkedListStack<T> {
     public int size() {
         return this.size;
     }
+
+    public boolean isEmpty() {
+        return this.first == null;
+    }
 }

@@ -9,6 +9,7 @@ import static org.testng.Assert.*;
  * Tests for {@link LinkedListStack}.
  */
 public class LinkedListStackTest {
+
     @Test
     public void testPush() throws Exception {
         final int size = 100;
@@ -47,6 +48,23 @@ public class LinkedListStackTest {
         }
 
         Assert.assertEquals(0, items.size(), "Size does not match");
+    }
+
+    @Test
+    public void testIsEmpty() throws Exception {
+        final LinkedListStack<Integer> items = new LinkedListStack<Integer>();
+        Assert.assertTrue(items.isEmpty(), "The stack must be empty now !!!");
+
+        final int size = 100;
+        for (int i = 0; i < size; i++) {
+            items.push(i);
+        }
+
+        for (int i = size; i > 0 ; i--) {
+            items.pop();
+        }
+
+        Assert.assertTrue(items.isEmpty(), "The stack must be empty now !!!");
     }
 
 }
