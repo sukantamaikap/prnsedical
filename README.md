@@ -1,2 +1,1 @@
-# prnsedical
-This project is for my personal reference only. Contains some problem solution for future reference.
+DS and algo implementations with problems and exercises. For personal use only.
