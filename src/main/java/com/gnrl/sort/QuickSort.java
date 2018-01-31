@@ -19,6 +19,8 @@ public class QuickSort<T extends Comparable> {
 
     public T[] sort() {
         this.sort(elements, 0, elements.length - 1);
+        return null;
+
     }
 
     private void sort(final T[] items, int low, int high) {
