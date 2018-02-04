@@ -62,7 +62,7 @@ public class LinkedListQueue<T> implements Iterable<T> {
 
 
     private class LinkedListQueueIterator implements Iterator<T> {
-        Node scanner = LinkedListQueue.this.tail;
+        Node scanner = LinkedListQueue.this.head;
 
         public boolean hasNext() {
             return scanner != null;

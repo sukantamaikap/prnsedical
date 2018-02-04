@@ -3,6 +3,9 @@ package com.gnrl.symbol.table;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.collections.Lists;
+
+import java.util.Iterator;
 
 public class BinarySearchTreeTest {
 
@@ -34,16 +37,16 @@ public class BinarySearchTreeTest {
         Assert.assertTrue(testSearchTree.getMin() == null, "Tree is empty, so no minimum value should be found");
 
         testSearchTree.put(3, "Three");
-        Assert.assertTrue(testSearchTree.getMin().equals("Three"), "Minimum key not found for tree with one node!!");
+        Assert.assertEquals(testSearchTree.getMin(), new Integer(3), "Minimum key not found for tree with one node!!");
         testSearchTree.put(9, "Nine");
         testSearchTree.put(1, "One");
         testSearchTree.put(-20, "Minus Twenty");
         testSearchTree.put(102, "One Hundred and Two");
 
-        Assert.assertTrue(testSearchTree.getMin().equals("Minus Twenty"), "Minimum key not found!!");
+        Assert.assertEquals(testSearchTree.getMin(), new Integer(-20), "Minimum key not found!!");
 
         testSearchTree.put(-200, "Minus Two hundred");
-        Assert.assertTrue(testSearchTree.getMin().equals("Minus Two hundred"), "Minimum key not found!!");
+        Assert.assertEquals(testSearchTree.getMin(), new Integer(-200), "Minimum key not found!!");
 
     }
 
@@ -54,16 +57,16 @@ public class BinarySearchTreeTest {
         Assert.assertTrue(testSearchTree.getMax() == null, "Tree is empty, so no maximum value should be found");
 
         testSearchTree.put(3, "Three");
-        Assert.assertTrue(testSearchTree.getMax().equals("Three"), "Maximum key not found for tree with one node!!");
+        Assert.assertEquals(testSearchTree.getMax(), new Integer(3), "Maximum key not found for tree with one node!!");
         testSearchTree.put(9, "Nine");
         testSearchTree.put(1, "One");
         testSearchTree.put(-20, "Minus Twenty");
         testSearchTree.put(102, "One Hundred and Two");
 
-        Assert.assertTrue(testSearchTree.getMax().equals("One Hundred and Two"), "Minimum key not found!!");
+        Assert.assertEquals(testSearchTree.getMax(), new Integer(102), "Minimum key not found!!");
 
         testSearchTree.put(200, "Two hundred");
-        Assert.assertTrue(testSearchTree.getMax().equals("Two hundred"), "Minimum key not found!!");
+        Assert.assertEquals(testSearchTree.getMax(), new Integer(200), "Minimum key not found!!");
     }
 
     @Test
@@ -81,5 +84,60 @@ public class BinarySearchTreeTest {
         testSearchTree.put(-10, "-10");
         testSearchTree.put(3, "3");
         testSearchTree.put(5, "5");
+        Assert.assertEquals(testSearchTree.getSize(), 6, "Size should be six for a tree with six nodes !!");
+
+        testSearchTree.put(5, "5~");
+        Assert.assertEquals(testSearchTree.getSize(), 6, "Size should be six for a tree with six nodes !!");
+    }
+
+    @Test
+    public void testKeys() throws Exception {
+        final BinarySearchTree<Integer, String> testSearchTree = new BinarySearchTree<>();
+        Assert.assertEquals(this.getIteratorSize(testSearchTree.keys()), 0, "There should be no items as no item has been inserted !!!");
+
+        testSearchTree.put(8, "8");
+        testSearchTree.put(2, "2");
+        testSearchTree.put(12, "12");
+        testSearchTree.put(10, "10");
+        testSearchTree.put(-2, "-2");
+        testSearchTree.put(-10, "-10");
+        testSearchTree.put(5, "5");
+        testSearchTree.put(9, "9");
+        testSearchTree.put(102, "102");
+        testSearchTree.put(11, "11");
+
+        Assert.assertEquals(this.getIteratorSize(testSearchTree.keys()), 10, "Key size does not match !!");
+
+    }
+
+    @Test
+    public void testKeysWithRange() throws Exception {
+        final BinarySearchTree<Integer, String> testSearchTree = new BinarySearchTree<>();
+        Assert.assertEquals(this.getIteratorSize(testSearchTree.keys()), 0, "There should be no items as no item has been inserted !!!");
+
+        testSearchTree.put(8, "8");
+        testSearchTree.put(2, "2");
+        testSearchTree.put(12, "12");
+        testSearchTree.put(10, "10");
+        testSearchTree.put(-2, "-2");
+        testSearchTree.put(-10, "-10");
+        testSearchTree.put(5, "5");
+        testSearchTree.put(9, "9");
+        testSearchTree.put(102, "102");
+        testSearchTree.put(11, "11");
+
+        Assert.assertEquals(this.getIteratorSize(testSearchTree.keys(8, 10)), 3, "Key size does not match !!");
+        Assert.assertEquals(this.getIteratorSize(testSearchTree.keys(199, 999)), 0, "Key size does not match !!");
+        Assert.assertEquals(this.getIteratorSize(testSearchTree.keys(-199, -32)), 0, "Key size does not match !!");
+    }
+
+    private int getIteratorSize(final Iterable iterable) {
+        int count = 0;
+        final Iterator itr = iterable.iterator();
+        while (itr.hasNext()) {
+            count++;
+            itr.next();
+        }
+        return count;
     }
 }
