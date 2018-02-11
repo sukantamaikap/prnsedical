@@ -3,7 +3,6 @@ package com.gnrl.symbol.table;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.collections.Lists;
 
 import java.util.Iterator;
 
@@ -37,16 +36,16 @@ public class BinarySearchTreeTest {
         Assert.assertTrue(testSearchTree.getMin() == null, "Tree is empty, so no minimum value should be found");
 
         testSearchTree.put(3, "Three");
-        Assert.assertEquals(testSearchTree.getMin(), new Integer(3), "Minimum key not found for tree with one node!!");
+        Assert.assertEquals(testSearchTree.getKey(testSearchTree.getMin()), new Integer(3), "Minimum key not found for tree with one node!!");
         testSearchTree.put(9, "Nine");
         testSearchTree.put(1, "One");
         testSearchTree.put(-20, "Minus Twenty");
         testSearchTree.put(102, "One Hundred and Two");
 
-        Assert.assertEquals(testSearchTree.getMin(), new Integer(-20), "Minimum key not found!!");
+        Assert.assertEquals(testSearchTree.getKey(testSearchTree.getMin()), new Integer(-20), "Minimum key not found!!");
 
         testSearchTree.put(-200, "Minus Two hundred");
-        Assert.assertEquals(testSearchTree.getMin(), new Integer(-200), "Minimum key not found!!");
+        Assert.assertEquals(testSearchTree.getKey(testSearchTree.getMin()), new Integer(-200), "Minimum key not found!!");
 
     }
 
@@ -57,16 +56,16 @@ public class BinarySearchTreeTest {
         Assert.assertTrue(testSearchTree.getMax() == null, "Tree is empty, so no maximum value should be found");
 
         testSearchTree.put(3, "Three");
-        Assert.assertEquals(testSearchTree.getMax(), new Integer(3), "Maximum key not found for tree with one node!!");
+        Assert.assertEquals(testSearchTree.getKey(testSearchTree.getMax()), new Integer(3), "Maximum key not found for tree with one node!!");
         testSearchTree.put(9, "Nine");
         testSearchTree.put(1, "One");
         testSearchTree.put(-20, "Minus Twenty");
         testSearchTree.put(102, "One Hundred and Two");
 
-        Assert.assertEquals(testSearchTree.getMax(), new Integer(102), "Minimum key not found!!");
+        Assert.assertEquals(testSearchTree.getKey(testSearchTree.getMax()), new Integer(102), "Minimum key not found!!");
 
         testSearchTree.put(200, "Two hundred");
-        Assert.assertEquals(testSearchTree.getMax(), new Integer(200), "Minimum key not found!!");
+        Assert.assertEquals(testSearchTree.getKey(testSearchTree.getMax()), new Integer(200), "Minimum key not found!!");
     }
 
     @Test
@@ -133,11 +132,105 @@ public class BinarySearchTreeTest {
 
     private int getIteratorSize(final Iterable iterable) {
         int count = 0;
+        if (iterable == null) {
+            return count;
+        }
+
         final Iterator itr = iterable.iterator();
         while (itr.hasNext()) {
             count++;
             itr.next();
         }
         return count;
+    }
+
+    @Test
+    public void testDeleteMin() throws Exception {
+        final BinarySearchTree<Integer, String> testSearchTree = new BinarySearchTree<>();
+        // this should not throw any NPE!!
+        testSearchTree.deleteMin();
+
+        testSearchTree.put(8, "8");
+        Assert.assertEquals(testSearchTree.getSize(), 1, "Tree size does not match !!!");
+        testSearchTree.deleteMin();
+        Assert.assertEquals(testSearchTree.getSize(), 0, "For a tree with just root node, deleteMin should delete the root node !!!");
+
+        testSearchTree.put(8, "8");
+        testSearchTree.put(2, "2");
+        testSearchTree.put(12, "12");
+        testSearchTree.put(10, "10");
+        testSearchTree.put(-2, "-2");
+        testSearchTree.put(-10, "-10");
+        testSearchTree.put(5, "5");
+        testSearchTree.put(9, "9");
+        testSearchTree.put(102, "102");
+        testSearchTree.put(11, "11");
+
+        testSearchTree.deleteMin();
+        Assert.assertEquals(testSearchTree.get(-10), null, "deleteMin did not work as expected!!");
+        testSearchTree.deleteMin();
+        Assert.assertEquals(testSearchTree.get(-2), null, "deleteMin did not work as expected!!");
+        Assert.assertEquals(testSearchTree.getSize(), 8, "deleteMin did not work as expected!!");
+    }
+
+    @Test
+    public void testDeleteMax() throws Exception {
+        final BinarySearchTree<Integer, String> testSearchTree = new BinarySearchTree<>();
+        // this should not throw any NPE!!
+        testSearchTree.deleteMax();
+
+        testSearchTree.put(8, "8");
+        Assert.assertEquals(testSearchTree.getSize(), 1, "Tree size does not match !!!");
+        testSearchTree.deleteMax();
+        Assert.assertEquals(testSearchTree.getSize(), 0, "For a tree with just root node, deleteMax should delete the root node !!!");
+
+        testSearchTree.put(8, "8");
+        testSearchTree.put(2, "2");
+        testSearchTree.put(12, "12");
+        testSearchTree.put(10, "10");
+        testSearchTree.put(-2, "-2");
+        testSearchTree.put(-10, "-10");
+        testSearchTree.put(5, "5");
+        testSearchTree.put(9, "9");
+        testSearchTree.put(102, "102");
+        testSearchTree.put(11, "11");
+
+        testSearchTree.deleteMax();
+        Assert.assertEquals(testSearchTree.get(102), null, "deleteMax did not work as expected!!");
+        testSearchTree.deleteMax();
+        Assert.assertEquals(testSearchTree.get(12), null, "deleteMax did not work as expected!!");
+        Assert.assertEquals(testSearchTree.getSize(), 8, "deleteMax did not work as expected!!");
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        final BinarySearchTree<Integer, String> testSearchTree = new BinarySearchTree<>();
+        // this should not throw any NPE!!
+        testSearchTree.delete(3);
+
+        testSearchTree.put(8, "8");
+        Assert.assertEquals(testSearchTree.getSize(), 1, "Tree size does not match !!!");
+        testSearchTree.deleteMax();
+        Assert.assertEquals(testSearchTree.getSize(), 0, "For a tree with just root node, deleteMax should delete the root node !!!");
+
+        testSearchTree.put(8, "8");
+        testSearchTree.put(2, "2");
+        testSearchTree.put(12, "12");
+        testSearchTree.put(10, "10");
+        testSearchTree.put(-2, "-2");
+        testSearchTree.put(-10, "-10");
+        testSearchTree.put(5, "5");
+        testSearchTree.put(9, "9");
+        testSearchTree.put(102, "102");
+        testSearchTree.put(11, "11");
+
+        testSearchTree.delete(1234);
+        Assert.assertEquals(testSearchTree.getSize(), 10, "delete should not alter size for not present key !!");
+        testSearchTree.delete(8);
+        Assert.assertEquals(testSearchTree.getSize(), 9, "delete did not work as expected !!");
+        testSearchTree.delete(2);
+        Assert.assertEquals(testSearchTree.getSize(), 8, "delete did not work as expected !!");
+        testSearchTree.delete(10);
+        Assert.assertEquals(testSearchTree.getSize(), 7, "delete did not work as expected !!");
     }
 }
