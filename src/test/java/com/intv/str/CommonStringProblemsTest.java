@@ -39,4 +39,27 @@ public class CommonStringProblemsTest {
         Assert.assertTrue(problems.isPalindrome("Madam, I'm Adam"), "\"Madam, I'm Adam\" should not be a palindrome");
 
     }
+
+    @Test
+    public void testNaivePatternMatch() throws Exception {
+        final CommonStringProblems problems = new CommonStringProblems();
+        Assert.assertEquals(problems.naivePatternMatch("abcdef", "abc"), Arrays.asList(0), "Expected outcome does not match!!");
+        Assert.assertEquals(problems.naivePatternMatch("aaaaaa", "aa"), Arrays.asList(0, 1, 2, 3, 4), "Expected outcome does not match!!");
+        Assert.assertEquals(problems.naivePatternMatch("abcdef", "def"), Arrays.asList(3), "Expected outcome does not match!!");
+        Assert.assertEquals(problems.naivePatternMatch("abcdef", "de"), Arrays.asList(3), "Expected outcome does not match!!");
+        Assert.assertEquals(problems.naivePatternMatch("abcdef", "efg"), Arrays.asList(), "Expected outcome does not match!!");
+        Assert.assertEquals(problems.naivePatternMatch("abcdef",""), null, "Expected outcome does not match!!");
+
+    }
+
+    @Test
+    public void testCommonPrefixSuffix() throws Exception {
+        final CommonStringProblems problems = new CommonStringProblems();
+        Assert.assertEquals(problems.longestCommonPrefixAndSuffix("abcabc"), "abc", "Expected common suffix prefix does not match");
+        Assert.assertEquals(problems.longestCommonPrefixAndSuffix("acacac"), "acac", "Expected common suffix prefix does not match");
+        Assert.assertEquals(problems.longestCommonPrefixAndSuffix("aaaaa"), "aaaa", "Expected common suffix prefix does not match");
+        Assert.assertEquals(problems.longestCommonPrefixAndSuffix("abcde"), "", "Expected common suffix prefix does not match");
+        Assert.assertEquals(problems.longestCommonPrefixAndSuffix(null), null, "Expected common suffix prefix does not match");
+        Assert.assertEquals(problems.longestCommonPrefixAndSuffix(""), null, "Expected common suffix prefix does not match");
+    }
 }
