@@ -101,7 +101,7 @@ public class CommonStringProblems {
      * 0 -> length-3 and 3 to length
      * 0 -> length-4 and 4 to length
      * and so on till the boundary conditions are true.
-     * O(n) 
+     * O(n)
      * @param input
      * @return longest common substring
      */
