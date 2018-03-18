@@ -22,9 +22,10 @@ public class CommonNumberProblems {
 
         boolean[] isNotPrime = new boolean[n+1];
         // iterate through the whole array starting at 2, as 0 and 1 are not prime numbers
-        for (int i = 2; i <= n  ; i++) {
+        for (int i = 2; i*i <= n  ; i++) {
             if (!isNotPrime[i]) {
                 for (int j = 2; j <= n; j++) {
+                    // mark all the elements which are multiplier of the base as not prime
                     if (i * j <= n) {
                         isNotPrime[i * j] = Boolean.TRUE;
                     }
