@@ -1,6 +1,8 @@
 package com.intv.arr;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class CommonArrayProblems {
 
@@ -207,5 +209,42 @@ public class CommonArrayProblems {
     private void markVisited(final boolean[] arr, int index) {
         arr[index] = Boolean.TRUE;
         arr[index + 1] = Boolean.TRUE;
+    }
+
+    /**
+     * Given an integer array and a number, find the pair of elements that sums to the number.
+     * @param sum
+     * @param elements
+     * @return {@link List} containing pair(s) of elements.
+     */
+    public List<Integer> findPairSumInArray(final int sum, final int[] elements) {
+        final List<Integer> output = new ArrayList<>();
+
+        if (elements == null) {
+            return output;
+        }
+
+        Arrays.sort(elements);
+        int start = 0;
+        int end = elements.length - 1;
+        while (start < end) {
+            int localSum = elements[start] + elements[end];
+            if (localSum == sum) {
+                output.add(elements[start]);
+                output.add(elements[end]);
+                start++;
+                end--;
+                continue;
+            }
+
+            if (localSum < sum) {
+                start++;
+            }
+
+            if (localSum > sum) {
+                end--;
+            }
+        }
+        return output;
     }
 }

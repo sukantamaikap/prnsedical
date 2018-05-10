@@ -1,5 +1,7 @@
 package com.intv.arr;
 
+import java.util.Arrays;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -19,7 +21,6 @@ public class CommonArrayProblemsTest {
 
     @Test
     public void testPartitionArray() throws Exception {
-
 
     }
 
@@ -105,5 +106,32 @@ public class CommonArrayProblemsTest {
         input = new Integer[]{1, 22, 9, 11, 9, 17, 10, 22};
         output = new Integer[]{1, 22};
         Assert.assertEquals(arrayProblems.mergeOverlappingIntervals(input), output, "Expected minimum distance does not match!!");
+    }
+
+    @Test
+    public void findPairSumInArray() throws Exception {
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        int[] input = new int[] {2, 4, 88, -6, 27, 12};
+        int sum = 6;
+        Assert.assertEquals(arrayProblems.findPairSumInArray(sum, input), Arrays.asList(-6, 12, 2, 4), "The output does not match !!!");
+        input = new int[] {200, 42, 84, -923, 66, 12, -82, -97, 99};
+        sum = 2;
+        Assert.assertEquals(arrayProblems.findPairSumInArray(sum, input), Arrays.asList(-97, 99, -82, 84), "The output does not match !!!");
+        Assert.assertEquals(arrayProblems.findPairSumInArray(sum, null), Arrays.asList(), "The output does not match !!!");
+        input = new int[] {2, 4};
+        sum = 2;
+        Assert.assertEquals(arrayProblems.findPairSumInArray(sum, input), Arrays.asList(), "The output does not match !!!");
+        input = new int[] {2, 4, 6};
+        sum = 8;
+        Assert.assertEquals(arrayProblems.findPairSumInArray(sum, input), Arrays.asList(2, 6), "The output does not match !!!");
+        input = new int[] {2, 4, 2};
+        sum = 4;
+        Assert.assertEquals(arrayProblems.findPairSumInArray(sum, input), Arrays.asList(2, 2), "The output does not match !!!");
+        input = new int[] {200, 42, 84, -923, 66, 12, -82, -97, 99};
+        sum = 20000;
+        Assert.assertEquals(arrayProblems.findPairSumInArray(sum, input), Arrays.asList(), "The output does not match !!!");
+        input = new int[] {2, 2, 2, 2};
+        sum = 4;
+        Assert.assertEquals(arrayProblems.findPairSumInArray(sum, input), Arrays.asList(2, 2, 2, 2), "The output does not match !!!");
     }
 }
