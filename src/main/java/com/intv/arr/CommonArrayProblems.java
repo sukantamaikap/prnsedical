@@ -1,8 +1,8 @@
 package com.intv.arr;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import edu.princeton.cs.introcs.In;
+
+import java.util.*;
 
 public class CommonArrayProblems {
 
@@ -246,5 +246,39 @@ public class CommonArrayProblems {
             }
         }
         return output;
+    }
+
+    /**
+     * Find the most frequent element in an array.
+     * If elements are less than 3 = or the input is empty or null,
+     * @param input
+     * @return
+     */
+    public  Integer findMostFrequent(final int[] input) {
+        if (input == null || input.length < 3) {
+            return null;
+        }
+
+        final Map<Integer, Integer> counter = new HashMap<>();
+        for (int i : input) {
+            if (counter.containsKey(i)) {
+                counter.put(i, counter.get(i) + 1);
+            }
+            else {
+                counter.put(i, 1);
+            }
+        }
+
+        int maxCount = 1;
+        int maxItem = 0;
+
+        for (final int key : counter.keySet()) {
+            if (counter.get(key) > maxCount) {
+                maxItem = key;
+                maxCount = counter.get(key);
+            }
+        }
+
+        return maxItem;
     }
 }
