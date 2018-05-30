@@ -252,7 +252,7 @@ public class CommonArrayProblems {
      * Find the most frequent element in an array.
      * If elements are less than 3 = or the input is empty or null,
      * @param input
-     * @return
+     * @return the most frequent number
      */
     public  Integer findMostFrequent(final int[] input) {
         if (input == null || input.length < 3) {
@@ -280,5 +280,43 @@ public class CommonArrayProblems {
         }
 
         return maxItem;
+    }
+
+    /**
+     * Find intersection of two arrays.
+     * Assumption : both inputs are sets, i.e each does not contain any duplicate.
+     * @param input1
+     * @param input2
+     * @return the intersection
+     */
+    public Integer[] findIntersection(final int[] input1, final int[] input2) {
+        if (input1 == null || input2 ==null || input1.length == 0 || input2.length == 0) {
+            return null;
+        }
+
+        Arrays.sort(input1);
+        Arrays.sort(input2);
+
+        final List<Integer> output = new ArrayList<>();
+
+        for(int i =0, j =0; i < input1.length && j < input2.length; ) {
+            if (input1[i] == input2[j]) {
+                output.add(input1[i]);
+                i++;
+                j++;
+                continue;
+            }
+
+            else if (input1[i] > input2[j]) {
+                j++;
+            }
+
+            else {
+                i++;
+            }
+        }
+
+        final Integer[] outputArray = new Integer[output.size()];
+        return output.toArray(outputArray);
     }
 }
