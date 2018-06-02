@@ -176,4 +176,129 @@ public class CommonArrayProblemsTest {
         final int[] input = {10, 2, 100, 10, 20, 45, 10, 87, 66, 2, 10, 1023, 45, 66, 10, 102};
         Assert.assertEquals(arrayProblems.findMostFrequent(input), Integer.valueOf(10),"Most frequent element must be 10");
     }
+
+    @Test
+    public void findIntersectionWithFirstInputNull() {
+        final int[] input1 = null;
+        final int[] input2 = {};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertNull(arrayProblems.findIntersection(input1, input2), "for either of the inputs being null or empty, the output must be null!!");
+    }
+
+    @Test
+    public void findIntersectionWithSecondInputNull() {
+        final int[] input1 = {};
+        final int[] input2 = null;
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertNull(arrayProblems.findIntersection(input1, input2), "for either of the inputs being null or empty, the output must be null!!");
+    }
+
+
+    @Test
+    public void findIntersectionWithBothInputNull() {
+        final int[] input1 = null;
+        final int[] input2 = null;
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertNull(arrayProblems.findIntersection(input1, input2), "for either of the inputs being null or empty, the output must be null!!");
+    }
+
+    @Test
+    public void findIntersectionWithBothInputEmpty() {
+        final int[] input1 = {};
+        final int[] input2 = null;
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertNull(arrayProblems.findIntersection(input1, input2), "for either of the inputs being null or empty, the output must be null!!");
+    }
+
+    @Test
+    public void findIntersectionWithTwoInputsOfSameSize() {
+        final int[] input1 = {2, 1, 4, 9, 10, 102};
+        final int[] input2 = {100, 4, 88, 1, 10002, 9};
+        final int[] output = {1, 4, 9};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertEquals(arrayProblems.findIntersection(input1, input2), output, "Expected output does not match");
+    }
+
+
+    @Test
+    public void findIntersectionWithTwoInputsOfDifferentSize1() {
+        final int[] input1 = {2, 1, 100, 4, 9, 49, 60};
+        final int[] input2 = {60};
+        final int[] output = {60};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertEquals(arrayProblems.findIntersection(input1, input2), output,"Expected output does not match");
+    }
+
+    @Test
+    public void findIntersectionWithTwoInputsOfDifferentSize2() {
+        final int[] input1 = {785970, 77};
+        final int[] input2 = {60, 110, 1023, 44, 23, 1, -10, 27, 68, 77, 10937, 45};
+        final int[] output = {77};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertEquals(arrayProblems.findIntersection(input1, input2), output,"Expected output does not match");
+    }
+
+    @Test
+    public void testTwoArraysAreRotationOfOneAnotherWithNullInput() {
+        final int[] input1 = null;
+        final int[] input2 = {};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertFalse(arrayProblems.isRotation(input1, input2), "For null or empty inputs, it should not be considered a rotation !!");
+    }
+
+    @Test
+    public void testTwoArraysAreRotationOfOneAnotherWithEmptyInput() {
+        final int[] input1 = {};
+        final int[] input2 = {9, 1, 10};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertFalse(arrayProblems.isRotation(input1, input2), "For null or empty inputs, it should not be considered a rotation !!");
+    }
+
+    @Test
+    public void testTwoArraysAreRotationOfOneAnotherWithOneElementArray() {
+        final int[] input1 = {1};
+        final int[] input2 = {1};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertTrue(arrayProblems.isRotation(input1, input2), "For 1 element array with identical element, the response should be true!!");
+    }
+
+    @Test
+    public void testTwoArraysAreRotationOfOneAnotherWithOneElementUniqueArray() {
+        final int[] input1 = {1};
+        final int[] input2 = {2};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertFalse(arrayProblems.isRotation(input1, input2), "For 1 element inputs with non-identical element, the response should be False!!");
+    }
+
+    @Test
+    public void testTwoArraysAreRotationOfOneAnotherWithArraysOfDifferentSize() {
+        final int[] input1 = {1, 2, 3};
+        final int[] input2 = {3, 4, 5, 1, 2};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertFalse(arrayProblems.isRotation(input1, input2), "For input of different size, the output should be false !!");
+    }
+
+    @Test
+    public void testTwoArraysAreRotationOfOneAnotherWithValidInputOfSizeTwo() {
+        final int[] input1 = {1, 2};
+        final int[] input2 = {2, 1};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertTrue(arrayProblems.isRotation(input1, input2), "For valid input, the outcome should be True !!");
+    }
+
+    @Test
+    public void testTwoArraysAreRotationOfOneAnotherWithValidInputOfSizeSix() {
+        final int[] input1 = {1, 2, 3, 4, 5, 6};
+        final int[] input2 = {4, 5, 6, 1, 2, 3};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertTrue(arrayProblems.isRotation(input1, input2), "For valid input, the outcome should be True !!");
+    }
+
+    @Test
+    public void testTwoArraysAreRotationOfOneAnotherWithIdenticalInput() {
+        final int[] input1 = {100, 200, 300};
+        final int[] input2 = {100, 200, 300};
+        final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+        Assert.assertFalse(arrayProblems.isRotation(input1, input2), "For identical input, the outcome should be True !!");
+    }
 }

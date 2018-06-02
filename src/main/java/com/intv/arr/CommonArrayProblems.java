@@ -319,4 +319,47 @@ public class CommonArrayProblems {
         final Integer[] outputArray = new Integer[output.size()];
         return output.toArray(outputArray);
     }
+
+    /**
+     * Find out if one array is rotation of another one.
+     * Assumption : both arrays are of same length
+     * @param input1 first array
+     * @param input2 second array
+     * @return true if 1 array is rotation of the other, false otherwise
+     */
+    public boolean isRotation(final int[] input1, final int[] input2) {
+        if (input1 == null || input1.length == 0 || input2 == null || input2.length == 0 || input1.length != input2.length) {
+            return Boolean.FALSE;
+        }
+
+        // for both 1 element array, with identical input, it should be considered as a rotation
+        if (input1.length == 1 && input1[0] != input2[0]) {
+            return Boolean.FALSE;
+        }
+
+        // for arrays length > 1, if both index zero elements are identical
+        if (input1[0] == input2[0]) {
+            return Boolean.FALSE;
+        }
+
+        int matchingIndex = -1;
+        for (int i = 0; i < input2.length; i++) {
+            if (input2[i] == input1[0]) {
+                matchingIndex = i;
+                break;
+            }
+        }
+
+        if (matchingIndex == -1) {
+            return Boolean.FALSE;
+        }
+
+        for (int i = 0; i < input1.length; i++) {
+            if (input1[i] != input2[(i + matchingIndex) % input2.length]) {
+                return Boolean.FALSE;
+            }
+        }
+
+        return Boolean.TRUE;
+    }
 }
