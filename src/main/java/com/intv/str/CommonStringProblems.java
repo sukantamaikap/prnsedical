@@ -1,7 +1,6 @@
 package com.intv.str;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * All common string interview problems
@@ -127,5 +126,32 @@ public class CommonStringProblems {
             }
         }
         return "";
+    }
+
+    public String findFirstNonRepeatingCharacter(final String input) {
+        if (input == null || input.length() == 0) {
+            return null;
+        }
+
+        final Map<Character, Integer> counter = new HashMap<>();
+        final Set<Character> orderQueue = new LinkedHashSet<>();
+
+        for (int i = 0; i < input.length(); i++) {
+            orderQueue.add(input.charAt(i));
+
+            if (counter.containsKey(input.charAt(i))) {
+                counter.put(input.charAt(i), counter.get(input.charAt(i)) + 1);
+            } else {
+                counter.put(input.charAt(i), 1);
+            }
+        }
+
+        for (final Character item : orderQueue) {
+            if (counter.get(item) == 1) {
+                return Character.toString(item);
+            }
+        }
+
+        return null;
     }
 }

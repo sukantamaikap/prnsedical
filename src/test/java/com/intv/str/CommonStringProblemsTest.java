@@ -62,4 +62,40 @@ public class CommonStringProblemsTest {
         Assert.assertEquals(problems.longestCommonPrefixAndSuffix(null), null, "Expected common suffix prefix does not match");
         Assert.assertEquals(problems.longestCommonPrefixAndSuffix(""), null, "Expected common suffix prefix does not match");
     }
+
+    @Test
+    public void testFindFirstNonRepeatingCharacterWithEmptyInput() {
+        final CommonStringProblems problems = new CommonStringProblems();
+        Assert.assertNull(problems.findFirstNonRepeatingCharacter(""), "For empty input, output should be null!!");
+    }
+
+    @Test
+    public void testFindFirstNonRepeatingCharacterWithNullInput() {
+        final CommonStringProblems problems = new CommonStringProblems();
+        Assert.assertNull(problems.findFirstNonRepeatingCharacter(null), "For null input, output should be null!!");
+    }
+
+    @Test
+    public void testFindFirstNonRepeatingCharacterWithAllIdenticalCharacters() {
+        final CommonStringProblems problems = new CommonStringProblems();
+        Assert.assertNull(problems.findFirstNonRepeatingCharacter("aaaaaa"), "For all identical character input, output should be null!!");
+    }
+
+    @Test
+    public void testFindFirstNonRepeatingCharacterWithTwoIdenticalCharacters() {
+        final CommonStringProblems problems = new CommonStringProblems();
+        Assert.assertNull(problems.findFirstNonRepeatingCharacter("aaaaaabb"), "For all identical character input, output should be null!!");
+    }
+
+    @Test
+    public void testFindFirstNonRepeatingCharacterWithSingleIdenticalCharacter() {
+        final CommonStringProblems problems = new CommonStringProblems();
+        Assert.assertEquals(problems.findFirstNonRepeatingCharacter("aaaaaabcbaa"), "c", "Expected outcome should be c!!");
+    }
+
+    @Test
+    public void testFindFirstNonRepeatingCharacterWithMultipleIdenticalCharacter() {
+        final CommonStringProblems problems = new CommonStringProblems();
+        Assert.assertEquals(problems.findFirstNonRepeatingCharacter("aaaaaabcbnaaq"), "c", "Expected outcome should be c!!");
+    }
 }
