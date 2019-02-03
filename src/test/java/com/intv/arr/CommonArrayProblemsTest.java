@@ -394,4 +394,23 @@ public class CommonArrayProblemsTest {
         arrayProblems.rangeQueryForFrequencyInAnArray(4, 11, validInput, 8) == 2,
         "For all valid inputs, the frequency should be correct");
   }
+
+  @Test
+  public void testMinInSortedAndRotatedArray() {
+    int[] input = null;
+    final CommonArrayProblems arrayProblems = new CommonArrayProblems();
+    Assert.assertTrue(arrayProblems.minInSortedAndRotatedArray(input) == null, "For an empty or null input, the output should be null");
+    input = new int[0];
+    Assert.assertTrue(arrayProblems.minInSortedAndRotatedArray(input) == null, "For an empty or null input, the output should be null");
+    input = new int[]{1};
+    Assert.assertTrue(arrayProblems.minInSortedAndRotatedArray(input) == 1, "Output does not match expected!!");
+    input = new int[]{1, 2, 3, 4, 5, 6};
+    Assert.assertTrue(arrayProblems.minInSortedAndRotatedArray(input) == 1, "Output does not match expected!!");
+    input = new int[]{5, 6, 1, 2, 3, 4};
+    Assert.assertTrue(arrayProblems.minInSortedAndRotatedArray(input) == 1, "Output does not match expected!!");
+    input = new int[]{2, 1};
+    Assert.assertTrue(arrayProblems.minInSortedAndRotatedArray(input) == 1, "Output does not match expected!!");
+    input = new int[]{40, 50, -10, 10, 20, 30};
+    Assert.assertTrue(arrayProblems.minInSortedAndRotatedArray(input) == -10, "Output does not match expected!!");
+  }
 }

@@ -40,7 +40,6 @@ public class ArrayStack<T> implements Iterable<T> {
 
   private void resizeDown() {
     this.capacity = this.capacity / 2;
-    final T[] newStack = (T[]) new Object[this.capacity];
     this.resizeStack();
   }
 

@@ -14,7 +14,7 @@ public class CommonStackProblems {
    * @param expression
    */
   public boolean isParenthesesBalanced(final String expression) {
-    if (expression == null || expression.length() == 0) {
+    if (expression == null || expression.length() == 0 || (expression.length() % 2) != 0) {
       return Boolean.FALSE;
     }
 

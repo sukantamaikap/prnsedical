@@ -1,5 +1,7 @@
 package com.intv.arr;
 
+import edu.princeton.cs.introcs.In;
+
 import java.util.*;
 
 public class CommonArrayProblems {
@@ -398,5 +400,51 @@ public class CommonArrayProblems {
     }
 
     return count;
+  }
+
+  /**
+   * Find the minimum element in a sorted and rotated array.
+   * Examples:
+   * Input: {5, 6, 1, 2, 3, 4}
+   * Output: 1
+   *
+   * Input: {1, 2, 3, 4}
+   * Output: 1
+   *
+   * Input: {2, 1}
+   * Output: 1
+   *
+   * Worst Case: O(n)
+   * Assumption: no duplicates are present.
+   *
+   * @param input
+   * @return the minimum element
+   */
+  public Integer minInSortedAndRotatedArray(final int[] input) {
+
+    if (input == null || input.length == 0) {
+      return null;
+    }
+
+    if (input.length == 1) {
+      return input[0];
+    }
+
+    for (int j = 1, i = 0; j < input.length; j++) {
+      if (input[i] > input[j]) {
+        return input[j];
+      }
+    }
+
+    return input[0];
+  }
+
+  /**
+   * Given a sorted and rotated array, find if there is a pair with a given sum.
+   * @param input
+   * @return
+   */
+  public List<Integer> sumInSortedAndRotatedArray(final int[] input) {
+    return null;
   }
 }
