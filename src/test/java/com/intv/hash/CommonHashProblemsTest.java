@@ -53,4 +53,25 @@ public class CommonHashProblemsTest {
         Arrays.asList(4, 3, 10, -3),
         "Pair(s) do(es) not match !!");
   }
+
+  @Test
+  public void testFirstElementOccuringKTimes() {
+    final CommonHashProblems hashProblems = new CommonHashProblems();
+    int[] input = null;
+    Assert.assertEquals(hashProblems.firstElementOccuringKTimes(input,2), -1, "For null or empty input, the output must be -1");
+    input = new int[0];
+    Assert.assertEquals(hashProblems.firstElementOccuringKTimes(input,2), -1, "For null or empty input, the output must be -1");
+    input = new int[]{1, 2, 3, 4, 5, 6};
+    Assert.assertEquals(hashProblems.firstElementOccuringKTimes(input,2), -1, "Expexcted output does not match!!");
+    input = new int[]{1, 2, 1, 2, 1, 2};
+    Assert.assertEquals(hashProblems.firstElementOccuringKTimes(input,2), 1, "Expexcted output does not match!!");
+    input = new int[]{101, 22, 2, 34, 2, 34, 44, 101};
+    Assert.assertEquals(hashProblems.firstElementOccuringKTimes(input,2), 101, "Expexcted output does not match!!");
+    input = new int[]{101, 101, 101, 101, 101};
+    Assert.assertEquals(hashProblems.firstElementOccuringKTimes(input,100), -1, "Expexcted output does not match!!");
+    input = new int[]{1, 1, 1};
+    Assert.assertEquals(hashProblems.firstElementOccuringKTimes(input,2), 1, "Expexcted output does not match!!");
+    input = new int[]{1, 2, 8, 1, 2, 8};
+    Assert.assertEquals(hashProblems.firstElementOccuringKTimes(input,2), 1, "Expexcted output does not match!!");
+  }
 }
